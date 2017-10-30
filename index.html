@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> net art </title>
+        <meta charset="utf-8">
+        <style>
+            canvas {
+                position: absolute;
+                top:0px;
+                left:0px;
+                /*background-color: red;*/
+            }
+            .dragme {
+        position:relative;
+        width: 270px;
+        height: 203px;
+        cursor: move;
+    }
+    #draggable {
+        background-color: #ccc;
+        border: 1px solid #000;
+    }
+        </style>
+    </head>
+    <body>
+        <canvas></canvas>
+        <script src="main.js"></script>
+        <script type="text/javascript">
+        function startDrag(e) {
+            // determine event object
+            if (!e) {
+                var e = window.event;
+            }
+
+            // IE uses srcElement, others use target
+            var targ = e.target ? e.target : e.srcElement;
+
+            if (targ.className != 'dragme') {return};
+            // calculate event X, Y coordinates
+                offsetX = e.clientX;
+                offsetY = e.clientY;
+
+            // assign default values for top and left properties
+            if(!targ.style.left) { targ.style.left='0px'};
+            if (!targ.style.top) { targ.style.top='0px'};
+
+            // calculate integer values for top and left
+            // properties
+            coordX = parseInt(targ.style.left);
+            coordY = parseInt(targ.style.top);
+            drag = true;
+
+            // move div element
+                document.onmousemove=dragDiv;
+                return false;
+        }
+        function dragDiv(e) {
+            if (!drag) {return};
+            if (!e) { var e= window.event};
+            var targ=e.target?e.target:e.srcElement;
+            // move div element
+            targ.style.left=coordX+e.clientX-offsetX+'px';
+            targ.style.top=coordY+e.clientY-offsetY+'px';
+            return false;
+        }
+        function stopDrag() {
+            drag=false;
+        }
+        window.onload = function() {
+            document.onmousedown = startDrag;
+            document.onmouseup = stopDrag;
+        }
+
+      </script>
+    </body>
+    <img src = 'https://orig00.deviantart.net/b9e3/f/2016/077/6/e/nimbus_by_fennecfoxaim-d9vjtzm.gif' alt = 'blueFish'
+     title = 'blueFish' class = 'dragme'>
+ <img src = 'http://media.giphy.com/media/2axKIS1g9zR1S/giphy.gif' title = 'floatingClouds'style = 'width:900px; height:700px'/>
+</html>
