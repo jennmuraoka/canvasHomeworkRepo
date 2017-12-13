@@ -6,7 +6,7 @@ var ctx = canvas.getContext('2d'); // where you will be drawing (draw on the con
 var r = 100;
 var mouseX = 0;
 var mouseY = 0;
-
+  
 // imgs are the images of the background (the frames that give the fake 3d panning perspective)
 var imgs = ['images/L026.png','images/L025.png','images/L024.png','images/L023.png','images/L022.png',
 'images/L021.png','images/L020.png','images/L019.png','images/L018.png','images/L017.png','images/L016.png',
